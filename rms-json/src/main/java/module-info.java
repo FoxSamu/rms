@@ -15,6 +15,16 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-rootProject.name = "rms"
+import dev.runefox.rms.ResourceType;
 
-include(":rms-json")
+/**
+ * Basic JSON integration with RMS. This module provides a {@link ResourceType} that loads JSON formatted resources.
+ *
+ * @author Samū
+ * @since 1.1
+ */
+module dev.runefox.rms.json {
+    exports dev.runefox.rms.json;
+    requires dev.runefox.rms;
+    requires dev.runefox.json;
+}

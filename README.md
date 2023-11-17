@@ -2,12 +2,28 @@
 This is a very simple Java tool for games and other apps to manage resources. 
 
 # Installation
-The current version is `1.0`. This version is compatible with Java 17 and above.
+The current version is `1.1`. This version is compatible with Java 17 and above.
 
 The artifact can be installed from my [Maven repository](https://maven.shadew.net/).
 
 ## Gradle
+```kotlin
+// Kotlin DSL:
+
+repositories {
+    // Add my repository
+    maven { url = uri("https://maven.shadew.net/") }
+}
+
+dependencies {
+    // Add the artifact
+    implementation("dev.runefox:rms:1.1")
+}
+```
+
 ```groovy
+// Groovy DSL:
+
 repositories {
     // Add my repository
     maven { url "https://maven.shadew.net/" }
@@ -15,7 +31,7 @@ repositories {
 
 dependencies {
     // Add the artifact
-    implementation "dev.runefox:rms:1.0"
+    implementation "dev.runefox:rms:1.1"
 }
 ```
 
@@ -34,7 +50,7 @@ dependencies {
     <dependency>
         <groupId>dev.runefox</groupId>
         <artifactId>rms</artifactId>
-        <version>1.0</version>
+        <version>1.1</version>
     </dependency>
 </dependencies>
 ```
@@ -166,7 +182,7 @@ ContentResource myContent = mgr.get(ContentResourceType.INSTANCE, "my_content");
 ```
 
 
-## 5. Extra: Using handles
+## Extra: Using handles
 
 In some occasion, you may want to reload all the resources in your application. This means all the `Resource` instances change. You will have to re-obtain all the resources yourself, which can be quite annoying to do. That is, unless you use `Handle`s. A `Handle` is a reference to a resource. It will store the resource for quick access but it's controlled by the resource manager and reset upon `dispose()`. Instead of calling `ResourceManager.get`, you can call `ResourceManager.handle` in exactly the same way to get a handle instead. You can then store this handle anywhere in your app without ever having to think about reloading it again. Another advantage of using handles is that they're lazily loaded: it will load the resource only when you request it using `Handle.get`. A handle is simply just a glorified `Supplier`.
 ```java
@@ -176,6 +192,14 @@ ContentResource instance = myContent.get();
 ```
 
 Now you can call `dispose` at any time to simply unload all resources. RMS will invalidate all handles and the next time you call `get` on any of them, it will reload the resource. In fact, you can call `dispose` and give a new root path, and the resource will load as usual from the new path.
+
+# Libraries for certain formats
+
+Below is a list of libraries that load files in certain formats, with an artifact that belongs to it. All artifacts have the same version as the main project and all artifacts depend on the main project with the same version (in the list referred to with `[rms-version]`).
+
+- [JSON](https://github.com/FoxSamu/json/): use `dev.runefox:rms-json:[rms-version]`.
+
+In the future I may add more supported formats through my libraries or third-party libraries.
 
 # License
 Licensed under the LGPLv3 license. For the full LGPL+GPLv3 license, see `LICENSE`.

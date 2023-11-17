@@ -15,19 +15,26 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+
 plugins {
-    id("java-library")
+    id("java")
     id("maven-publish")
 }
 
-group = "dev.runefox"
-version = "1.1"
+group = rootProject.group
+version = rootProject.version
 
 repositories {
     mavenCentral()
+    maven {
+        url = uri("https://maven.shadew.net/")
+    }
 }
 
 dependencies {
+    implementation("dev.runefox:json:0.7.2")
+    implementation(rootProject)
+
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }

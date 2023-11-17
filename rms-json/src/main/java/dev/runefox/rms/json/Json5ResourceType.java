@@ -15,6 +15,27 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-rootProject.name = "rms"
+package dev.runefox.rms.json;
 
-include(":rms-json")
+import dev.runefox.json.Json;
+import dev.runefox.rms.Resource;
+
+/**
+ * A {@link JsonResourceType} that uses {@linkplain Json#json5() JSON 5} to parse a resource.
+ *
+ * @author Samū
+ * @see JsonResourceType
+ * @see Json5CodecResourceType
+ * @since 1.1
+ */
+public interface Json5ResourceType<R extends Resource> extends JsonResourceType<R> {
+    @Override
+    default Json json() {
+        return Json.json5();
+    }
+
+    @Override
+    default String extension() {
+        return "json5";
+    }
+}
