@@ -2,7 +2,42 @@
 This is a very simple Java tool for games and other apps to manage resources. 
 
 # Installation
-...
+The current version is `1.0`. This version is compatible with Java 17 and above.
+
+The artifact can be installed from my [Maven repository](https://maven.shadew.net/).
+
+## Gradle
+```groovy
+repositories {
+    // Add my repository
+    maven { url "https://maven.shadew.net/" }
+}
+
+dependencies {
+    // Add the artifact
+    implementation "dev.runefox:rms:1.0"
+}
+```
+
+## Maven
+```xml
+<repositories>
+    <!-- Add my repository -->
+    <repository>
+        <id>Runefox Maven</id>
+        <url>https://maven.shadew.net/</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <!-- Add the artifact -->
+    <dependency>
+        <groupId>dev.runefox</groupId>
+        <artifactId>rms</artifactId>
+        <version>1.0</version>
+    </dependency>
+</dependencies>
+```
 
 # Usage
 There are 3 core components to the system:
